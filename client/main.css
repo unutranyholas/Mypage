@@ -1,0 +1,96 @@
+/* CSS declarations go here */
+HTML {
+	height: 100%;
+}
+
+BODY {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font: 14px/1.4285 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	display: flex;
+	align-items: center;
+}
+
+ARTICLE {
+	width: 600px;
+	margin: auto;
+}
+
+FORM {
+	width: 600px;
+	margin: auto;	
+}
+
+P.date{
+	font-style: italic;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+INPUT {
+	width:100%;
+	font: bold 21px/1.4285 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	padding: 6px 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+TEXTAREA {
+	width: 100%;
+	min-height: 200px;
+	font: 14px/1.4285 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	padding: 6px 10px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+INPUT:focus, TEXTAREA:focus {
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	outline: none;
+	background-color: rgba(255, 255, 0, 0.1);
+}
+
+BUTTON {
+	background-color: #000;
+	color: #fff;
+	font: bold 21px/1.4285 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	border: none;
+	padding: 4px 10px;
+	margin: 0 10px 0 0;
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+BUTTON:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+BUTTON:focus {
+	outline: none;
+}
+
+
+.date {
+	font-size: 11px;
+	color: #999;
+}
+
+#login-buttons {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+
+#login-buttons a.login-link-text {
+	color: #fff;
+	cursor: default;
+	width: 20px;
+	height: 20px;
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}

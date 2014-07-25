@@ -1,0 +1,32 @@
+<head>
+	<title>My Page</title>
+</head>
+
+<body>
+	{{> page}}
+	{{> loginButtons}}
+
+</body>
+
+<template name="page">
+	{{#with articles}}
+		{{> form}}
+	{{/with}}
+</template>
+
+<template name="article">
+	<article>
+		<h1>{{title}}</h1>
+		<p>{{content}}</p>
+		<p class="date">{{dateString}}</p>
+	</article>
+</template>
+
+<template name="form">
+	<form action="">
+		<input name="title" type="text" value="{{title}}" />
+		<textarea name="content">{{content}}</textarea>
+		<button id="publish">Publish</button>
+		<p class="date">Saved: {{dateString}}</p>
+	</form>
+</template>

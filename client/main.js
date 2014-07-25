@@ -1,49 +1,64 @@
 Template.page.helpers({
-    articles: function() {
-    	return Articles.findOne({}, {sort: {date: -1}});
-    }
+	dots: function() {
+		return Dots.find();
+	}
 });
 
-Template.form.helpers({
-    articles: function() {
-    	return Articles.findOne({}, {sort: {date: -1}});
-    }
+Template.page.helpers({
+	users: function() {
+		return Online.find();
+	}
 });
 
-Template.article.helpers({
-	dateString: function() {
+Template.page.events({
+	'mouseup': function(e) {
+		e.preventDefault();
+		var position = {
+			x: e.pageX,
+			y: e.pageY
+		};
+	position._id = Dots.insert(position);
+	},
+	'dblclick #page': function(e) {
+		e.preventDefault();
+		var message = prompt("Your message", "Sasai");
 
-		var date = new Date(this.date);
-		return moment(date).calendar();
+		var position = {
+			x: e.pageX,
+			y: e.pageY,
+			text: message
+		}
+	position._id = Dots.insert(position);
+	},
+	'mousemove': function(e) {
+		
+		Deps.autorun(function () {
+		if (!Session.get("logged")){
+			var cursorPosition = {
+				x: e.pageX,
+				y: e.pageY,
+			}
+			cursorPosition._id = Online.insert(cursorPosition);
+			Session.set("logged", cursorPosition._id);
+		} else {
+			Online.update({ 
+			    _id: Session.get("logged") 
+			}, {
+			    $set: { 
+			        x: e.pageX,
+			        y: e.pageY,
+			    }
+			});
+
+		};
+});
+
 
 	}
 });
 
-Template.form.helpers({
-	dateString: function() {
+Meteor.subscribe('dots');
 
-		var date = new Date(this.date);
-		return moment(date).calendar();
+Meteor.subscribe('online');
 
-	}
-});
 
-Meteor.subscribe('articles');
-
-Accounts.ui.config({
-	passwordSignupFields: 'USERNAME_ONLY'
-});
-
-Template.form.events({
-	'submit form': function(e) {
-	e.preventDefault();
-
-	var article = {
-		title: $(e.target).find('[name=title]').val(),
-		content: $(e.target).find('[name=content]').val(),
-		date: new Date().getTime()
-	}
-
-	article._id = Articles.insert(article);
-  }
-});

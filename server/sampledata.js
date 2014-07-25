@@ -1,13 +1,7 @@
-if (Articles.find().count() === 0) {
+Meteor.publish('dots', function() {
+  return Dots.find();
+});
 
-	Articles.insert({
-		title: 'Title',
-		content: 'Content',
-		date: new Date().getTime()
-	});
-
-};
-
-Meteor.publish('articles', function() {
-  return Articles.find();
+Meteor.publish('online', function() {
+  return Online.find();
 });
